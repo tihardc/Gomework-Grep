@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 )
 
 func checkString(line string, keyWord string, checkFunc checkFunc, formatter formatter) (string, error) {
@@ -40,14 +41,14 @@ func main() {
 		if err == io.EOF {
 			break
 		}
-		switch config.option {
-		case "n", "N":
+		switch strings.ToLower(config.option) {
+		case "n":
 			criterion, format = containsCheck, colorFormat
-		case "y", "Y":
+		case "y":
 			criterion, format = containsCaseless, colorFormat
-		case "r", "R":
+		case "r":
 			criterion, format = containsRegEx, colorFormat
-		case "f", "F":
+		case "f":
 			criterion, format = containsRegEx, multicolorFormat
 		}
 		detected, err := checkString(string(line), config.keyString, criterion, format)
