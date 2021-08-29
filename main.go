@@ -46,6 +46,8 @@ func main() {
 		case "y", "Y":
 			criterion, format = containsCaseless, colorFormat
 		case "r", "R":
+			criterion, format = containsRegEx, colorFormat
+		case "f", "F":
 			criterion, format = containsRegEx, multicolorFormat
 		}
 		detected, err := checkString(string(line), config.keyString, criterion, format)
